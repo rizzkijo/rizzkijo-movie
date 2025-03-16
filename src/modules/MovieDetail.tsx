@@ -34,7 +34,7 @@ const MovieDetail = () => {
   return (
     <>
       <Head>
-        <title>{`${data.title} (${new Date(data.release_date).getFullYear()})`}</title>
+        <title>{`${data?.title || data?.original_title} (${new Date(data?.release_date || '0').getFullYear()})`}</title>
       </Head>
       <div className="flex flex-col items-center sm:items-start w-full max-w-container px-4 mx-auto">
         <h1>Hohohoho</h1>
