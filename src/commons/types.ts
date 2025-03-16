@@ -35,3 +35,9 @@ export type FetchOptionsProps = {
     Authorization: string;
   }
 }
+
+export type PaginationProps = {
+  totalPages: number;
+  currentPage: number;
+  onPageChange: (page: number) => void;
+}
