@@ -26,6 +26,8 @@ export type SearchComponentProps = {
   className?: string;
   placeholder?: string; 
   searchValue?: string;
+  isMobile?: boolean;
+  setShowSearch: (value: boolean) => void;
 }
 
 export type FetchOptionsProps = {

@@ -26,7 +26,6 @@ const SearchView = () => {
       Authorization: `Bearer ${accessToken}`
     }
   });
-  console.log('jotest data', data);
 
   const goToPage = (page: number) => {
     router.push({

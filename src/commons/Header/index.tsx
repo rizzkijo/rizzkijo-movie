@@ -1,20 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import SearchComponent from "./components/Search";
-import { useMediaQuery } from "@react-hookz/web";
 import { Menu, Search, SearchX, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useMobile, useTablet } from "@/src/utils";
 
 type HeaderProps = {
   searchValue?: string;
 }
 
 const Header = ({ searchValue = '' }: HeaderProps) => {
-  // Check if current screen is mobile or not
-  const isMobile = useMediaQuery("(max-width: 767px)");
+  // Function to check if current screen is a mobile or not
+  // from @/src/utils
+  const isMobile = useMobile();
 
-  // Check if current screen is mobile & tablet or not
-  const isTablet = useMediaQuery("(min-width: 100px) and (max-width: 1180px)");
+  // Function to check if current screen is a mobile to tablet or not
+  // from @/src/utils
+  const isTablet = useTablet();
   
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
@@ -47,27 +49,38 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
         <Link href="/">
           <Image
             // className="dark:invert"
-            src="/next.svg"
+            src="/assets/images/rizzkijo.svg"
             alt="Next.js logo"
-            width={120}
-            height={25}
+            width={100}
+            height={47}
             priority
           />
         </Link>
+
+        {/* Show burger menu and/or search buttons on mobile and/or tablet screen */}
         {(isTablet || isMobile) && (
           <div className="flex gap-6 items-center">
+            {/* Show search button only on mobile screen */}
             {isMobile && (
               <button
-                onClick={() => setShowSearch(!showSearch)}
+                onClick={() => {
+                  setShowSearch(!showSearch);
+                  setShowMenu(false);
+                }}
               >
                 {showSearch
                   ? <SearchX size={28} />
                   : <Search size={28} />}
               </button>
             )}
+
+            {/* Show burder menu button on mobile to tablet screen */}
             {isTablet && (
               <button
-                onClick={() => setShowMenu(!showMenu)}
+                onClick={() => {
+                  setShowMenu(!showMenu);
+                  setShowSearch(false);
+                }}
               >
                 {showMenu
                   ? <X size={28} />
@@ -76,15 +89,22 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
             )}
           </div>
         )}
+
         {showSearch && (
           <div
             className="shadow-lg absolute top-[100%] right-0 left-0 bg-white py-3 px-4 w-full
             md:-translate-y-2/4 md:-translate-x-2/4 md:top-2/4 md:left-2/4 md:max-w-[350px]
             md:gap-6 md:flex-row md:items-center md:shadow-none md:py-0 lg:max-w-[450px]"
           >
-            <SearchComponent searchValue={searchValue} placeholder="Search movie..." />
+            <SearchComponent
+              searchValue={searchValue}
+              isMobile={isMobile}
+              setShowSearch={setShowSearch}
+              placeholder="Search movie..."
+            />
           </div>
         )}
+
         {showMenu && (
           <ul
             className="flex flex-col gap-1 items-start justify-start shadow-lg
@@ -96,10 +116,12 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
             <li className="w-full md:w-auto">
               <Link
                 href="/"
-                className="text-neutral-500 hover:text-neutral-700 transition-all
-                hover:bg-gray-100 md:hover:bg-transparent
-                ease-[ease-in-out] py-2 px-4 inline-block w-full
-                md:w-auto"
+                onClick={() => {
+                  if (isMobile) {
+                    setShowMenu(false);
+                  }
+                }}
+                className="menu-item"
               >
                 Home
               </Link>
@@ -107,10 +129,12 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
             <li className="w-full md:w-auto">
               <Link
                 href="#"
-                className="text-neutral-500 hover:text-neutral-700 transition-all
-                hover:bg-gray-100 md:hover:bg-transparent
-                ease-[ease-in-out] py-2 px-4 inline-block w-full
-                md:w-auto"
+                onClick={() => {
+                  if (isMobile) {
+                    setShowMenu(false);
+                  }
+                }}
+                className="menu-item"
               >
                 About
               </Link>
@@ -118,10 +142,12 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
             <li className="w-full md:w-auto">
               <Link
                 href="#"
-                className="text-neutral-500 hover:text-neutral-700 transition-all
-                hover:bg-gray-100 md:hover:bg-transparent
-                ease-[ease-in-out] py-2 px-4 inline-block w-full
-                md:w-auto"
+                onClick={() => {
+                  if (isMobile) {
+                    setShowMenu(false);
+                  }
+                }}
+                className="menu-item"
               >
                 Contact Us
               </Link>
