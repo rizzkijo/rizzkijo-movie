@@ -4,6 +4,7 @@ import SearchComponent from "./components/Search";
 import { Menu, Search, SearchX, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useMobile, useTablet } from "@/src/commons/utils";
+import { usePathname } from "next/navigation";
 
 type HeaderProps = {
   searchValue?: string;
@@ -17,6 +18,8 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
   // Function to check if current screen is a mobile to tablet or not
   // from @/src/utils
   const isTablet = useTablet();
+
+  const pathname = usePathname();
   
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
@@ -46,7 +49,10 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
         className="relative h-[60px] px-4 flex justify-between items-center gap-2
         max-w-container ml-auto mr-auto"
       >
-        <Link href="/">
+        <Link href="/" onClick={() => {
+          setShowSearch(false);
+          setShowMenu(false);
+        }}>
           <Image
             // className="dark:invert"
             src="/assets/images/rizzkijo.svg"
@@ -99,6 +105,7 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
             <SearchComponent
               searchValue={searchValue}
               isMobile={isMobile}
+              showSearch={showSearch}
               setShowSearch={setShowSearch}
               placeholder="Search movie..."
             />
@@ -113,45 +120,21 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
             lg:items-center lg:shadow-none md:py-0
             xl:static xl:justify-start"
           >
-            <li className="w-full md:w-auto">
-              <Link
-                href="/"
-                onClick={() => {
-                  if (isMobile) {
-                    setShowMenu(false);
-                  }
-                }}
-                className="menu-item"
-              >
-                Home
-              </Link>
-            </li>
-            <li className="w-full md:w-auto">
-              <Link
-                href="#"
-                onClick={() => {
-                  if (isMobile) {
-                    setShowMenu(false);
-                  }
-                }}
-                className="menu-item"
-              >
-                About
-              </Link>
-            </li>
-            <li className="w-full md:w-auto">
-              <Link
-                href="#"
-                onClick={() => {
-                  if (isMobile) {
-                    setShowMenu(false);
-                  }
-                }}
-                className="menu-item"
-              >
-                Contact Us
-              </Link>
-            </li>
+            {[
+              { href: "/", label: "Home" },
+              { href: "/movie/nowplaying", label: "Now Playing" },
+              { href: "/movie/toprated", label: "Top Rated" },
+            ].map(({ href, label }) => (
+              <li key={href} className="w-full md:w-auto">
+                <Link
+                  href={href}
+                  onClick={() => isMobile && setShowMenu(false)}
+                  className={`menu-item ${pathname === href ? "current" : ""}`}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
         )}
       </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Form from "next/form";
 import { SearchComponentProps } from "@/src/commons/types";
 import { Search } from "lucide-react";
@@ -8,9 +8,11 @@ const SearchComponent = ({
   placeholder = 'Search here...',
   searchValue = '',
   isMobile,
+  showSearch,
   setShowSearch,
 }: SearchComponentProps) => {
   const [inputValue, setInputValue] = useState<string>(searchValue);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (inputValue.length < 3) {
@@ -23,13 +25,20 @@ const SearchComponent = ({
   };
 
   // Set input value based on current query params
-  useEffect(() => setInputValue(searchValue), [searchValue])
+  useEffect(() => setInputValue(searchValue), [searchValue]);
+
+  useEffect(() => {
+    if (isMobile && showSearch) {
+      searchInputRef.current?.focus();
+    }
+  }, [isMobile, showSearch]);
 
   return (
     <div className="search-wrapper">
       <Form action="/search" onSubmit={handleSubmit}>
         <div className="relative">
           <input
+            ref={searchInputRef}
             name="query"
             type="search"
             placeholder={placeholder}

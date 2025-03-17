@@ -7,6 +7,7 @@ import {
   lgTMDBImageBaseUrl,
   TMDBImageBaseUrl
 } from "@/src/commons/utils";
+import MovieDetailSkeleton from "./components/MovieDetailSkeleton";
 
 const MovieDetail = () => {
   const accessToken = process.env.NEXT_PUBLIC_TMDB_ACESS_TOKEN;
@@ -22,18 +23,9 @@ const MovieDetail = () => {
       Authorization: `Bearer ${accessToken}`
     }
   });
-  console.log('jotest data', data);
-  console.log('jotest isFetching', isFetching);
-  console.log('jotest isPending', isPending);
-  console.log('jotest isError', isError);
-  console.log('jotest error', error);
 
   if (isFetching || isPending) {
-    return (
-      <div className="flex flex-col sm:items-start w-full max-w-container px-4 mx-auto">
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <MovieDetailSkeleton />
   }
 
   if (isError || data?.success === false) {
