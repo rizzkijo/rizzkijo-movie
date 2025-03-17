@@ -37,6 +37,7 @@ export type SearchComponentProps = {
   placeholder?: string; 
   searchValue?: string;
   isMobile?: boolean;
+  showSearch: boolean;
   setShowSearch: (value: boolean) => void;
 }
 

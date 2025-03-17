@@ -11,3 +11,8 @@ export const TMDBImageBaseUrl = process.env.NEXT_PUBLIC_TMDB_ORIGINAL_IMAGE_BASE
 export const smTMDBImageBaseUrl = process.env.NEXT_PUBLIC_TMDB_SMALL_IMAGE_BASEURL;
 export const mdTMDBImageBaseUrl = process.env.NEXT_PUBLIC_TMDB_MEDIUM_IMAGE_BASEURL;
 export const lgTMDBImageBaseUrl = process.env.NEXT_PUBLIC_TMDB_LARGE_IMAGE_BASEURL;
+
+// Test function
+export const add = (a: number, b: number) => {
+  return a + b;
+};
