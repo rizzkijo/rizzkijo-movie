@@ -37,7 +37,7 @@ const SearchView = () => {
   if (isPending || isFetching) {
     return (
       <div className="w-full max-w-container px-4 mx-auto">
-        <h1 className="text-4xl font-bold mb-1">
+        <h1 className="text-xl md:text-4xl font-bold mb-1">
           {`Search result(s) for "${queryParam}"`}
         </h1>
         <p className="text-neutral-500 font-[600] mb-8">{`${data?.total_results || 0} result(s).`}</p>
@@ -53,11 +53,11 @@ const SearchView = () => {
   if (isError || data?.success === false) {
     return (
       <div className="w-full max-w-container px-4 pt-20 mx-auto text-center">
-        <h1 className="text-4xl font-bold mb-6 flex flex-col items-center gap-4">
+        <h1 className="text-xl lg:text-2xl xl:text-4xl font-bold mb-2 lg:mb-4 xl:mb-6 flex flex-col items-center gap-4">
           <span className="text-red-600"><CloudAlert size={60} /></span>
           Oops!! Something went wrong!
         </h1>
-        <p className="text-neutral-500 font-[500] mb-8">{error?.message || data?.status_message}</p>
+        <p className="text-neutral-500 text-sm lg:text-base font-[500]">{error?.message || data?.status_message}</p>
       </div>
     );
   }
@@ -76,7 +76,7 @@ const SearchView = () => {
             </div>
           )
           : (
-            <div className="text-md text-gray-500 flex gap-3 a=items-center justify-center">
+            <div className="text-base text-gray-500 flex gap-3 a=items-center justify-center">
               <span className="self-center text-red-600"><Frown size={22} /></span>
               <span className="self-center">Oops!! The movie you are looking for is not available.</span>
             </div>

@@ -31,7 +31,7 @@ const Home = () => {
   if (isError || data?.success === false) {
     return (
       <div className="flex flex-col items-center w-full max-w-container px-4 mx-auto">
-        <h2 className="text-md font-medium text-black/50">{error?.message || data?.status_message}</h2>
+        <h2 className="text-base font-medium text-black/50">{error?.message || data?.status_message}</h2>
       </div>
     );
   }
