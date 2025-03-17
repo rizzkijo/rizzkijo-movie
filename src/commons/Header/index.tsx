@@ -3,7 +3,7 @@ import Link from "next/link";
 import SearchComponent from "./components/Search";
 import { Menu, Search, SearchX, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useMobile, useTablet } from "@/src/utils";
+import { useMobile, useTablet } from "@/src/commons/utils";
 
 type HeaderProps = {
   searchValue?: string;
