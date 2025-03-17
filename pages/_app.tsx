@@ -23,9 +23,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <main className={`${poppins.className} py-[84px] min-h-svh`}>
+      <main className={`${poppins.className} flex flex-col pt-[84px] min-h-svh`}>
         <Header searchValue={searchValue} />
-        <Component {...pageProps} />
+        <div className="pb-[32px]">
+          <Component {...pageProps} />
+        </div>
         <Footer />
       </main>
     </QueryClientProvider>

@@ -53,7 +53,7 @@ const MovieCard = ({ data }: MovieCardProps) => {
         </div>
       )}
 
-      <div className="w-full aspect-[2_/_3] bg-gray-200 flex justify-center items-center">
+      <div className={`w-full aspect-[2_/_3] ${isImageSrcError ? 'bg-gray-400': 'bg-black/70'} flex justify-center items-center`}>
         
         {/* Show image place holder if image from api fails to load */}
         {isImageSrcError
@@ -63,7 +63,8 @@ const MovieCard = ({ data }: MovieCardProps) => {
               alt={`image-${data.id}`}
               width={150}
               height={150}
-              className="mt-11 self-start opacity-20"
+              className="mt-11 self-start opacity-40 invert w-[100px] h-[100px]
+              lg:w-[150px] lg:h-[150px]"
             />
           )
           : (
@@ -74,7 +75,7 @@ const MovieCard = ({ data }: MovieCardProps) => {
               height={390}
               className="w-full object-cover aspect-[2_/_3]
               bg-gray-100 transition-all duration-[0.25s] ease-[ease-in-out]
-              group-hover:scale-[1.2]"
+              group-hover:scale-[1.2] opacity-90"
               onError={() => setIsImageSrcError(true)} // handling if image fails to load
             />
           )}
@@ -84,14 +85,19 @@ const MovieCard = ({ data }: MovieCardProps) => {
         flex flex-col items-start justify-end
         bg-linear-to-t from-black/90 via-black-80 via-black-10 to-black/0"
       >
-        {data.release_date && (
-          <span className="text-sm md:text-md">{new Date(data.release_date).getFullYear()}</span>
+        <h3 className="font-medium md:font-bold md:text-lg line-clamp-3">
+          {data.original_title ? data.original_title : data.title}
+          {' '}
+          {data.release_date && (
+            <span className="text-white/80 text-sm">{`(${new Date(data.release_date).getFullYear()})`}</span>
+          )}
+        </h3>
+        {data?.vote_average !== 0 && (
+          <p className="flex items-center gap-2 text-white font-bold">
+            <Star size={18} className="inline-block text-yellow-400 -mt-[2px]" />
+            {data.vote_average}
+          </p>
         )}
-        <h3 className="font-medium md:font-bold md:text-lg line-clamp-2">{data.original_title === data.title ? data.original_title : `${data.original_title} (${data.title})`}</h3>
-        <p className="mt-1 flex items-center gap-2 text-sm">
-          <span className="text-yellow-400 self-center"><Star size={18} /></span>
-          <span className="mt-[3px]">{`${data.vote_average || 0} (${data.vote_count || 0})`}</span>
-        </p>
       </div>
     </Link>
   );

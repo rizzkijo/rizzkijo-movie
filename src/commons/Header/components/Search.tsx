@@ -6,16 +6,28 @@ import { Search } from "lucide-react";
 const SearchComponent = ({
   className = '',
   placeholder = 'Search here...',
-  searchValue = ''
+  searchValue = '',
+  isMobile,
+  setShowSearch,
 }: SearchComponentProps) => {
   const [inputValue, setInputValue] = useState<string>(searchValue);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (inputValue.length < 3) {
+      e.preventDefault();
+    } else {
+      if (isMobile) {
+        setShowSearch(false);
+      }
+    }
+  };
 
   // Set input value based on current query params
   useEffect(() => setInputValue(searchValue), [searchValue])
 
   return (
     <div className="search-wrapper">
-      <Form action="/search">
+      <Form action="/search" onSubmit={handleSubmit}>
         <div className="relative">
           <input
             name="query"
@@ -31,9 +43,12 @@ const SearchComponent = ({
             bg-neutral-200 rounded-md ${className}
             `}
           />
-          <span className="absolute right-3 -translate-y-2/4 top-2/4 text-neutral-500">
+          <button
+            type="submit"
+            className="cursor-pointer absolute right-3 -translate-y-2/4 top-2/4 text-neutral-500"
+          >
             <Search size={24} />
-          </span>
+          </button>
         </div>
       </Form>
     </div>

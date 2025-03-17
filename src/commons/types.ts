@@ -22,10 +22,22 @@ export type DetailMovieProps = {
   vote_count: number;
 };
 
+export type TopBannerMovieProps = {
+  bannerImage: string;
+  originalTitle?: string;
+  releaseDate?: string;
+  tagline?: string;
+  title: string;
+  voteAverage: number;
+  voteCount: number;
+};
+
 export type SearchComponentProps = {
   className?: string;
   placeholder?: string; 
   searchValue?: string;
+  isMobile?: boolean;
+  setShowSearch: (value: boolean) => void;
 }
 
 export type FetchOptionsProps = {
