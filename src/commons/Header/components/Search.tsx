@@ -3,9 +3,14 @@ import Form from "next/form";
 import { SearchComponentProps } from "@/src/commons/types";
 import { Search } from "lucide-react";
 
-const SearchComponent = ({className = '', placeholder = 'Search here...', searchValue = ''}: SearchComponentProps) => {
+const SearchComponent = ({
+  className = '',
+  placeholder = 'Search here...',
+  searchValue = ''
+}: SearchComponentProps) => {
   const [inputValue, setInputValue] = useState<string>(searchValue);
 
+  // Set input value based on current query params
   useEffect(() => setInputValue(searchValue), [searchValue])
 
   return (
@@ -20,7 +25,7 @@ const SearchComponent = ({className = '', placeholder = 'Search here...', search
             onChange={(e) => setInputValue(e.target.value)}
             className={`
               transition-all
-              w-full xl:w-[400px] py-2 px-4 pr-[44px] box-border border-1 border-transparent
+              w-full py-2 px-4 pr-[44px] box-border border-1 border-transparent
               focus:border-1 focus:border-neutral-500 focus:outline-none
               focus-visible:border-1 focus-visible:border-neutral-500 focus-visible:outline-none
             bg-neutral-200 rounded-md ${className}
