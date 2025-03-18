@@ -50,8 +50,10 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
         max-w-container ml-auto mr-auto"
       >
         <Link href="/" onClick={() => {
-          setShowSearch(false);
-          setShowMenu(false);
+          if (isMobile){
+            setShowSearch(false);
+            setShowMenu(false);
+          }
         }}>
           <Image
             // className="dark:invert"

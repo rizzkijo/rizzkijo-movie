@@ -42,7 +42,7 @@ const SearchView = () => {
         </h1>
         <p className="text-neutral-500 font-[600] mb-8">{`${data?.total_results || 0} result(s).`}</p>
         <div className="w-full grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {Array.from({ length: 5 }).map((_, index) => (
+          {Array.from({ length: 20 }).map((_, index) => (
             <MovieCardSkeleton key={index} />
           ))}
         </div>
