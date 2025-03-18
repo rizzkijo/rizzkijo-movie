@@ -26,7 +26,6 @@ const MovieDetail = () => {
       Authorization: `Bearer ${accessToken}`
     }
   });
-  console.log('jotest data', data);
   
   // Show default string if data is null / undefined / ''
   const notAvailable = () => <span className="italic text-neutral-400">Not available</span>;
