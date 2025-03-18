@@ -12,7 +12,7 @@ Latest branch: `master`
 - TMDB Public API: [https://developer.themoviedb.org/docs/getting-started](https://developer.themoviedb.org/docs/getting-started)
 
 ## Configurations
-Setup environment variables in `.env`. See `.env.example` for more example.
+Setup environment variables in `.env`. See `.env.example`.
 
 ## Installation
 1. Install dependencies: `yarn install` or `npm install`
