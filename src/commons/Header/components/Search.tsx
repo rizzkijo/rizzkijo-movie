@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import Form from "next/form";
 import { SearchComponentProps } from "@/src/commons/types";
-import { Search } from "lucide-react";
+import { Info, Search } from "lucide-react";
 
 const SearchComponent = ({
   className = '',
@@ -14,9 +14,16 @@ const SearchComponent = ({
   const [inputValue, setInputValue] = useState<string>(searchValue);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  // State for search terms, 'true' if user submit search form with less than 3 characters 
+  const [searchWarning, setSearchWarning] = useState<boolean>(false);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (inputValue.length < 3) {
       e.preventDefault();
+      setSearchWarning(true);
+      setTimeout(() => {
+        setSearchWarning(false);
+      }, 2000);
     } else {
       if (isMobile) {
         setShowSearch(false);
@@ -52,12 +59,26 @@ const SearchComponent = ({
             bg-neutral-200 rounded-md ${className}
             `}
           />
+
           <button
             type="submit"
             className="cursor-pointer absolute right-3 -translate-y-2/4 top-2/4 text-neutral-500"
           >
             <Search size={24} />
           </button>
+
+          {/* Show warning info if user submit search form with less than 3 characters */}
+          {searchWarning && (
+            <div className={`search-tooltip absolute top-[calc(100%_+_10px)] left-0 ${searchWarning && 'active'}`}>
+                <div
+                  className="bg-black text-white text-sm flex gap-2
+                  items-center py-2 px-4 rounded-md"
+                >
+                  <Info size={18} />
+                  <p>Input min. 3 characters..</p>
+                </div>
+            </div>
+          )}
         </div>
       </Form>
     </div>

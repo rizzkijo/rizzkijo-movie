@@ -59,19 +59,28 @@ body {
   @apply font-bold text-neutral-800;
 }
 
-/* .disc-wrapper > span {
-  display: inline-block;
-  width: auto;
-} */
-
-/* .disc-wrapper > span::after {
-  content: "\2022";
-  display: inline-block;
-  margin-right: 8px;
-  margin-left: 8px;
+.search-tooltip {
+  opacity: 0;
+  visibility: hidden;
 }
 
-.disc-wrapper > span:last-child::after {
-  content: "";
-  display: none;
-} */
+.search-tooltip.active {
+  animation: fadeInSlide 0.3s ease-out forwards;
+  visibility: visible;
+}
+
+.search-tooltip:before {
+  @apply content-[''] border-y-[9px] border-x-[8px] border-t-transparent border-x-transparent border-b-black
+  absolute bottom-[100%] left-4;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
