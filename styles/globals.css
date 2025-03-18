@@ -59,12 +59,12 @@ body {
   @apply font-bold text-neutral-800;
 }
 
-.disc-wrapper > span {
+/* .disc-wrapper > span {
   display: inline-block;
   width: auto;
-}
+} */
 
-.disc-wrapper > span::after {
+/* .disc-wrapper > span::after {
   content: "\2022";
   display: inline-block;
   margin-right: 8px;
@@ -74,4 +74,4 @@ body {
 .disc-wrapper > span:last-child::after {
   content: "";
   display: none;
-}
+} */
