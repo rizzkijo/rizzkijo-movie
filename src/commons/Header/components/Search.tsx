@@ -63,6 +63,7 @@ const SearchComponent = ({
           <button
             type="submit"
             className="cursor-pointer absolute right-3 -translate-y-2/4 top-2/4 text-neutral-500"
+            title={placeholder}
           >
             <Search size={24} />
           </button>
