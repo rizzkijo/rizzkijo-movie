@@ -53,10 +53,10 @@ const SearchComponent = ({
             onChange={(e) => setInputValue(e.target.value)}
             className={`
               transition-all
-              w-full py-2 px-4 pr-[44px] box-border border-1 border-transparent
-              focus:border-1 focus:border-neutral-500 focus:outline-none
-              focus-visible:border-1 focus-visible:border-neutral-500 focus-visible:outline-none
-            bg-neutral-200 rounded-md ${className}
+              w-full py-2 px-4 pr-[44px] box-border border-1 border-neutral-400
+              focus:border-neutral-700 focus:outline-none
+              focus-visible:border-neutral-700 focus-visible:outline-none
+            bg-white rounded-md ${className}
             `}
           />
 
