@@ -10,6 +10,11 @@ export type MoviesProps = {
   vote_count: number;
 };
 
+export type MovieCardProps = {
+  priority?: boolean;
+  data: MoviesProps;
+}
+
 export type DetailMovieProps = {
   adult: boolean;
   backdrop_path: string;

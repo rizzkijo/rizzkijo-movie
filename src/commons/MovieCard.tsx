@@ -1,14 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { Star } from "lucide-react";
-import { MoviesProps } from "@/src/commons/types";
+import { MovieCardProps } from "@/src/commons/types";
 import Link from "next/link";
 
-type MovieCardProps = {
-  data: MoviesProps;
-}
-
-const MovieCard = ({ data }: MovieCardProps) => {
+const MovieCard = ({ priority = false, data }: MovieCardProps) => {
   // TMDB image base url from .env
   const imageBaseUrl = process.env.NEXT_PUBLIC_TMDB_SMALL_IMAGE_BASEURL;
 
@@ -65,6 +61,7 @@ const MovieCard = ({ data }: MovieCardProps) => {
               height={150}
               className="mt-11 self-start opacity-40 invert w-[100px] h-[100px]
               lg:w-[150px] lg:h-[150px]"
+              priority={priority}
             />
           )
           : (
@@ -77,6 +74,7 @@ const MovieCard = ({ data }: MovieCardProps) => {
               bg-gray-100 transition-all duration-[0.25s] ease-[ease-in-out]
               group-hover:scale-[1.2] opacity-90"
               onError={() => setIsImageSrcError(true)} // handling if image fails to load
+              priority={priority}
             />
           )}
       </div>
