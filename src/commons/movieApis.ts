@@ -64,10 +64,6 @@ const useMovieDetail = (
       const res = await fetch(`/api/detailMovie/${id}`);
       return res.json();
     },
-    select: (data) => ({
-      ...data,
-      results: data.results,
-    }),
   });
 };
 

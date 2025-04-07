@@ -13,10 +13,9 @@ const MovieCard = ({ priority = false, data }: MovieCardProps) => {
   return (
     <Link
       href={`/movie/${data?.id}`}
-      className="inline-block group relative drop-shadow-[0_4px_8px_rgba(0,0,0,0.25)]
+      className="inline-block group relative
       transition-all duration-[0.25s] ease-[ease-in-out]
-      bg-white border border-white rounded-xl overflow-hidden
-      hover:drop-shadow-[0_6px_10px_rgba(0,0,0,0.5)]"
+      rounded-xl overflow-hidden"
     >
       <div
           className="flex items-center justify-end

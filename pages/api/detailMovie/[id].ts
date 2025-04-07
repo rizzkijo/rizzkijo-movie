@@ -17,7 +17,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     );
 
     if (!response.ok) {
-      return res.status(response.status).json({ message: 'Failed to fetch from TMDB' });
+      return res.status(response.status).json({ success: false, message: 'Failed to fetch from TMDB' });
     }
 
     const data = await response.json();
