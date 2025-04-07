@@ -4,11 +4,10 @@ import { CloudAlert, Frown } from "lucide-react";
 import { MoviesProps } from "@/src/commons/types";
 import MovieCard from "@/src/commons/MovieCard";
 import MovieCardSkeleton from "@/src/commons/MovieCardSkeleton";
-import useSearchMovies from "./api";
+import { useSearchMovies } from "@/src/commons/movieApis";
 import Pagination from "@/src/commons/Pagination";
 
 const SearchView = () => {
-  const accessToken = process.env.NEXT_PUBLIC_TMDB_ACESS_TOKEN;
   const router = useRouter();
 
   const queryParam = Array.isArray(router?.query?.query) 
@@ -19,13 +18,7 @@ const SearchView = () => {
   ? router.query.page[0] 
   : router.query?.page ?? 1;
 
-  const { data, isFetching, isPending, isError, error } = useSearchMovies(queryParam, Number(page), [queryParam, page], {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${accessToken}`
-    }
-  });
+  const { data, isFetching, isPending, isError, error } = useSearchMovies(queryParam, Number(page), [queryParam, String(page)]);
 
   const goToPage = (page: number) => {
     router.push({
@@ -72,7 +65,7 @@ const SearchView = () => {
         {!isPending && !isFetching && data?.results?.length > 0
           ? (
             <div className="w-full grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-              {data?.results?.map((item: MoviesProps) => <MovieCard key={item.id} data={item} />)}
+              {data?.results?.map((item: MoviesProps, index: number) => <MovieCard key={item.id} priority={index === 0} data={item} />)}
             </div>
           )
           : (

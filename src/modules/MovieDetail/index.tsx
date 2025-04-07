@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { Clapperboard, CloudAlert, Star, Timer } from "lucide-react";
-import useMovieDetail from "./api";
+import { useMovieDetail } from "@/src/commons/movieApis";
 import {
   mdTMDBImageBaseUrl,
   lgTMDBImageBaseUrl,
@@ -11,7 +11,6 @@ import MovieDetailSkeleton from "./components/MovieDetailSkeleton";
 import { useMobile } from "@/src/commons/utils";
 
 const MovieDetail = () => {
-  const accessToken = process.env.NEXT_PUBLIC_TMDB_ACESS_TOKEN;
   const isMobile = useMobile();
 
   const router = useRouter();
@@ -19,13 +18,7 @@ const MovieDetail = () => {
   ? router.query.id[0] 
   : router.query?.id ?? '';
 
-  const { data, isFetching, isPending, isError, error } = useMovieDetail([id], id, {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${accessToken}`
-    }
-  });
+  const { data, isFetching, isPending, isError, error } = useMovieDetail([id], id);
   
   // Show default string if data is null / undefined / ''
   const notAvailable = () => <span className="italic text-neutral-400">Not available</span>;

@@ -4,24 +4,22 @@ import { CloudAlert, Frown } from "lucide-react";
 import { MoviesProps } from "@/src/commons/types";
 import MovieCard from "@/src/commons/MovieCard";
 import MovieCardSkeleton from "@/src/commons/MovieCardSkeleton";
-import { useTopRatedMovies } from "@/src/modules/Home/api";
+import { useTopRatedMovies } from "@/src/commons/movieApis";
 import Pagination from "@/src/commons/Pagination";
 
 const TopRatedPage = () => {
-  const accessToken = process.env.NEXT_PUBLIC_TMDB_ACESS_TOKEN;
   const router = useRouter();
 
   const page = Array.isArray(router?.query?.page) 
   ? router.query.page[0] 
   : router.query?.page ?? 1;
 
-  const { data, isFetching, isPending, isError, error } = useTopRatedMovies(['toprated', page.toString()], {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${accessToken}`
-    }
-  }, undefined, Number(page));
+  const { data, isFetching, isPending, isError, error } = useTopRatedMovies([
+    'toprated',
+    page.toString()],
+    undefined,
+    Number(page),
+  );
 
   const goToPage = (page: number) => {
     router.push({

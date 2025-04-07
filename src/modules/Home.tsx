@@ -1,14 +1,12 @@
 import React from "react";
 import { MoviesProps } from "@/src/commons/types";
 import MovieCard from "@/src/commons/MovieCard";
-import { useTopRatedMovies, useNowPlayingMovies } from "./api";
+import { useTopRatedMovies, useNowPlayingMovies } from "@/src/commons/movieApis";
 import MovieCardSkeleton from "@/src/commons/MovieCardSkeleton";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 const Home = () => {
-  const accessToken = process.env.NEXT_PUBLIC_TMDB_ACESS_TOKEN;
-
   // Get Top Rated Movies list, slice 5
   const {
     data: dataTop,
@@ -16,13 +14,7 @@ const Home = () => {
     isPending: isPendingTop,
     isError: isErrorTop,
     error: errorTop,
-  } = useTopRatedMovies(['popular'], {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${accessToken}`
-    }
-  }, 5);
+  } = useTopRatedMovies(['popular'], 5);
 
   // Get Now Playing Movies list, slice 5
   const {
@@ -31,13 +23,7 @@ const Home = () => {
     isPending: isPendingNow,
     isError: isErrorNow,
     error: errorNow,
-  } = useNowPlayingMovies(['nowplaying'], {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${accessToken}`
-    }
-  }, 5);
+  } = useNowPlayingMovies(['nowplaying'], 5);
 
   return (
     <div className="flex flex-col gap-6 md:gap-10 items-start w-full max-w-container px-4 mx-auto">
@@ -56,7 +42,7 @@ const Home = () => {
                 <MovieCardSkeleton key={index} />
               ))
             ) : (
-              dataNow?.results?.map((item: MoviesProps) => <MovieCard key={item.id} data={item} />)
+              dataNow?.results?.map((item: MoviesProps, index: number) => <MovieCard key={item.id} priority={index === 0 || index === 1} data={item} />)
             )}
           
           {(isErrorNow || dataNow?.results?.success === false) && <p className="text-base font-medium text-black/50">{errorNow?.message || dataNow?.results?.status_message}</p>}
