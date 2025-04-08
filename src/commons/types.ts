@@ -94,5 +94,6 @@ export type FetchOptionsProps = {
 export type PaginationProps = {
   totalPages: number;
   currentPage: number;
+  delta?: number;
   onPageChange: (page: number) => void;
 }

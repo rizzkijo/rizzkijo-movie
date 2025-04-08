@@ -76,7 +76,7 @@ const SearchView = () => {
           )}
       </div>
       <div className="mt-8">
-        <Pagination currentPage={Number(page)} totalPages={data?.total_pages} onPageChange={goToPage} />
+        <Pagination currentPage={Number(page)} totalPages={data?.total_pages} delta={2} onPageChange={goToPage} />
       </div>
     </>
   );
