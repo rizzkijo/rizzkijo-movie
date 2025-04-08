@@ -25,8 +25,6 @@ const MovieDetailPage = () => {
 
 const MovieDetail = () => {
   const { data, isFetching, isPending, isError, error } = useMovieDetailContext();
-  console.log('jotest data', data);
-  console.log('jotest data', data);
 
   if (isError || data?.success === false) {
     return (

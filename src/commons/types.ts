@@ -65,13 +65,31 @@ export type DetailMovieProps = {
 };
 
 export type TopBannerMovieProps = {
-  bannerImage: string;
-  originalTitle?: string;
-  releaseDate?: string;
+  backdrop_path: string;
+  genres: GenresProps[];
+  original_title?: string;
+  original_language?: string;
+  poster_path: string;
+  release_date?: string;
+  runtime: number;
   tagline?: string;
   title: string;
-  voteAverage: number;
-  voteCount: number;
+  vote_average: number;
+  vote_count: number;
+};
+
+export type MainBannerProps = {
+  data: TopBannerMovieProps;
+}
+
+export type DetailInfoMovieProps = {
+  budget: number;
+  overview: string;
+  production_companies: ProductionCompaniesProps[];
+  production_countries: ProductionCountriesProps[];
+  revenue: number;
+  spoken_languages: SpokenLanguagesProps[];
+  status: string;
 };
 
 export type SearchComponentProps = {
@@ -96,4 +114,18 @@ export type PaginationProps = {
   currentPage: number;
   delta?: number;
   onPageChange: (page: number) => void;
+}
+
+export type CustomCarouselProps = {
+  title?: string;
+  gap?: number;
+  numRows?: number;
+  tabletRows?: number;
+  mobileRows?: number;
+  infinite?: boolean;
+  viewAllLink?: string;
+  isError: boolean;
+  errorMessage: string;
+  autoPlay?: boolean;
+  children: React.ReactNode;
 }
