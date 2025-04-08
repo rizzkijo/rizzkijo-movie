@@ -1,5 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 
+const usePopularMovies = (
+  queryKey: string[],
+  slice?: number | undefined,
+  page: number = 1,
+) => {
+  return useQuery({
+    queryKey,
+    queryFn: async () => {
+      const res = await fetch(`/api/popularMovies?page=${page}`);
+      return res.json();
+    },
+    select: (data) => ({
+      ...data,
+      results: slice ? data.results.slice(0, slice) : data.results,
+    }),
+  });
+};
+
 const useNowPlayingMovies = (
   queryKey: string[],
   slice?: number | undefined,
@@ -68,6 +86,7 @@ const useMovieDetail = (
 };
 
 export {
+  usePopularMovies,
   useNowPlayingMovies,
   useTopRatedMovies,
   useSearchMovies,
