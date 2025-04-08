@@ -1,5 +1,9 @@
 // src/contexts/MovieDetailContext.tsx
-import { createContext, useContext } from 'react';
+import {
+  createContext,
+  // useContext, --> just use 'use' hook start from React 19, like below
+  use,
+} from 'react';
 import { DetailMovieProps } from '@/src/commons/types';
 import { useMovieDetail } from '@/src/commons/movieApis';
 
@@ -17,7 +21,9 @@ type MovieDetailContextType = {
 const MovieDetailContext = createContext<MovieDetailContextType | undefined>(undefined);
 
 export const useMovieDetailContext = () => {
-  const context = useContext(MovieDetailContext);
+  // just use 'use' hook start from React 19, like below
+  // const context = useContext(MovieDetailContext);
+  const context = use(MovieDetailContext);
   if (!context) throw new Error('useMovieDetailContext must be used within a MovieDetailProvider');
   return context;
 };

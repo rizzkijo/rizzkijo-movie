@@ -46,7 +46,8 @@ body {
 .pagination-nav {
   @apply w-[40px] h-[40px] bg-black text-white
   rounded-md flex items-center justify-center cursor-pointer
-  hover:bg-black/80 disabled:opacity-30 disabled:cursor-default disabled:hover:bg-black;
+  hover:bg-black/80 disabled:cursor-default disabled:hover:bg-neutral-200
+  disabled:bg-neutral-200 disabled:text-black/30;
 }
 
 .menu-item {
