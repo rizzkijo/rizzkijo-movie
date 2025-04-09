@@ -15,8 +15,8 @@ const Banner = () => {
       className="relative w-full max-w-container md:px-4 -mt-[24px] md:mt-0 mx-auto"
     >
       <div
-        className="relative flex flex-col sm:items-start w-full bg-cover bg-black min-h-[80vw]
-        lg:min-h-[400px] md:rounded-xl overflow-hidden"
+        className="relative flex flex-col sm:items-start w-full bg-cover bg-black aspect-square
+        md:aspect-[2.43/1] md:rounded-xl overflow-hidden"
       >
         <picture>
           <source
@@ -46,7 +46,7 @@ const Banner = () => {
           />
         </picture>
         <div
-          className="mt-auto w-full flex p-4 pt-20 md:p-8 gap-2 items-end justify-start z-2"
+          className="mt-auto w-full flex p-4 pt-20 md:p-8 gap-4 items-end justify-start z-2"
         >
           {banner?.original_language && (
             <div
@@ -59,7 +59,7 @@ const Banner = () => {
           )}
           {!isMobile && (
             <picture
-              className="min-w-[25vw] max-w-[25vw] mr-4 float-left
+              className="min-w-[25vw] max-w-[25vw]
               md:min-w-[200px] md:max-w-[200px]
               lg:min-w-[200px] lg:max-w-[300px]"
             >

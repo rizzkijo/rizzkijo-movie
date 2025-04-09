@@ -5,6 +5,7 @@ import { usePopularMovies, useTopRatedMovies, useNowPlayingMovies } from "@/src/
 import MovieCardSkeleton from "@/src/commons/MovieCardSkeleton";
 import CustomCarousel from "@/src/commons/CustomCarousel";
 import MainBanner from "./components/MainBanner";
+import MainBannerSkeleton from "./components/MainBannerSkeleton";
 
 const Home = () => {
   // Get Popular Movies list, slice 5
@@ -36,67 +37,50 @@ const Home = () => {
 
   return (
     <div className="flex flex-col gap-6 md:gap-10 items-start w-full max-w-container px-4 mx-auto">
-      <div className="w-full">
-        {dataPop && (
-          <CustomCarousel
-            key={dataPop?.results?.length}
-            numRows={1}
-            tabletRows={1}
-            mobileRows={1}
-            gap={0}
-            infinite
-            isError={isErrorPop || dataPop?.results?.success === false}
-            errorMessage={errorPop?.message || dataPop?.results?.status_message}
-          >
-            {(isPendingPop || isFetchingPop)
-              ? <MovieCardSkeleton />
-              : (
-                dataPop?.results?.map((item: TopBannerMovieProps) => <MainBanner key={item.title} data={item} />)
-              )}
-          </CustomCarousel>
+      <CustomCarousel<TopBannerMovieProps>
+        key={dataPop?.results?.length}
+        autoPlay
+        data={dataPop?.results}
+        numRows={1}
+        tabletRows={1}
+        mobileRows={1}
+        gap={0}
+        infinite
+        isError={isErrorPop || dataPop?.results?.success === false}
+        loading={isPendingPop || isFetchingPop}
+        errorMessage={errorPop?.message || dataPop?.results?.status_message}
+        renderItem={({ item }) => (
+          <MainBanner data={item} />
         )}
-      </div>
+        skeleton={<MainBannerSkeleton />}
+      />
 
-      {dataNow && (
-        <CustomCarousel
-          key={dataNow?.results?.length}
-          title="Now Playing"
-          gap={16}
-          isError={isErrorNow || dataNow?.results?.success === false}
-          errorMessage={errorNow?.message || dataNow?.results?.status_message}
-          viewAllLink="/movie/nowplaying"
-        >
-          {(isPendingNow || isFetchingNow)
-            ? (
-              Array.from({ length: 5 }).map((_, index) => (
-                <MovieCardSkeleton key={index} />
-              ))
-            ) : (
-              dataNow?.results?.map((item: MoviesProps, index: number) => <MovieCard key={item.id} priority={index === 0 || index === 1} data={item} />)
-            )}
-        </CustomCarousel>
-      )}
+      <CustomCarousel<MoviesProps>
+        key={dataNow?.results?.length}
+        data={dataNow?.results}
+        title="Now Playing"
+        gap={16}
+        isError={isErrorNow || dataNow?.results?.success === false}
+        loading={isPendingNow || isFetchingNow}
+        errorMessage={errorNow?.message || dataNow?.results?.status_message}
+        viewAllLink="/movie/nowplaying"
+        renderItem={({ item }) => <MovieCard data={item} />}
+        skeleton={<MovieCardSkeleton />}
+      />
 
-      {dataTop && (
-        <CustomCarousel
-          key={dataTop?.results?.length}
-          title="Top Rated"
-          gap={16}
-          isError={isErrorTop || dataTop?.results?.success === false}
-          errorMessage={errorTop?.message || dataTop?.results?.status_message}
-          viewAllLink="/movie/toprated"
-          autoPlay
-        >
-          {(isPendingTop || isFetchingTop)
-            ? (
-              Array.from({ length: 5 }).map((_, index) => (
-                <MovieCardSkeleton key={index} />
-              ))
-            ) : (
-              dataTop?.results?.map((item: MoviesProps, index: number) => <MovieCard key={item.id} priority={index === 0 || index === 1} data={item} />)
-            )}
-        </CustomCarousel>
-      )}
+      <CustomCarousel<MoviesProps>
+        key={dataTop?.results?.length}
+        data={dataTop?.results}
+        title="Top Rated"
+        gap={16}
+        isError={isErrorTop || dataTop?.results?.success === false}
+        loading={isPendingTop || isFetchingTop}
+        errorMessage={errorTop?.message || dataTop?.results?.status_message}
+        viewAllLink="/movie/toprated"
+        autoPlay
+        renderItem={({ item }) => <MovieCard data={item} />}
+        skeleton={<MovieCardSkeleton />}
+      />
     </div>
   );
 };

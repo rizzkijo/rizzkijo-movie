@@ -44,7 +44,7 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
   if (!hasMounted) return null;
 
   return (
-    <header className="fixed top-0 bg-white w-full shadow-lg z-[999]">
+    <header className="fixed top-0 bg-white w-full shadow-lg z-[1001]">
       <div
         className="relative h-[60px] px-4 flex justify-between items-center gap-2
         max-w-container ml-auto mr-auto"
