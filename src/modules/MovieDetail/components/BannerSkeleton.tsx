@@ -5,7 +5,7 @@ const BannerSkeleton = () => (
   <div
     className="relative w-full max-w-container md:px-4 -mt-[24px] lg:mt-0 mx-auto"
   >
-    <Skeleton className="w-full min-h-[80vw] lg:min-h-[400px]" />
+    <Skeleton className="w-full aspect-[2.43/1]" />
   </div>
 );
 

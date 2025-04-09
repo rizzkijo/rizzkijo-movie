@@ -116,16 +116,19 @@ export type PaginationProps = {
   onPageChange: (page: number) => void;
 }
 
-export type CustomCarouselProps = {
-  title?: string;
-  gap?: number;
-  numRows?: number;
-  tabletRows?: number;
-  mobileRows?: number;
-  infinite?: boolean;
-  viewAllLink?: string;
-  isError: boolean;
-  errorMessage: string;
+export type CustomCarouselProps<T> = {
   autoPlay?: boolean;
-  children: React.ReactNode;
+  data: T[];
+  errorMessage: string;
+  gap?: number;
+  infinite?: boolean;
+  isError: boolean;
+  loading?: boolean;
+  mobileRows?: number;
+  numRows?: number;
+  renderItem: (params: { item: T; index: number }) => React.ReactNode;
+  skeleton?: React.ReactNode;
+  tabletRows?: number;
+  title?: string;
+  viewAllLink?: string;
 }
