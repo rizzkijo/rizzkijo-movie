@@ -4,7 +4,7 @@ import { CloudAlert, Frown } from "lucide-react";
 import { MoviesProps } from "@/src/commons/types";
 import MovieCard from "@/src/commons/MovieCard";
 import MovieCardSkeleton from "@/src/commons/MovieCardSkeleton";
-import { useSearchMovies } from "@/src/commons/movieApis";
+import { useSearchMovies } from "@/src/hooks/movieHooks";
 import Pagination from "@/src/commons/Pagination";
 
 const SearchView = () => {
