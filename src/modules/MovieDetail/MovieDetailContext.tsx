@@ -5,7 +5,7 @@ import {
   use,
 } from 'react';
 import { DetailMovieProps, TopBannerMovieProps, DetailInfoMovieProps } from '@/src/commons/types';
-import { useMovieDetail } from '@/src/commons/movieApis';
+import { useMovieDetail } from '@/src/hooks/movieHooks';
 
 type MovieDetailContextType = {
   data: DetailMovieProps | null;

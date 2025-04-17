@@ -5,6 +5,7 @@ import { Poppins } from "next/font/google";
 import { useRouter } from "next/router";
 import Header from "@/src/commons/Header";
 import Footer from "@/src/commons/Footer";
+import { useState } from "react";
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
@@ -19,7 +20,18 @@ export default function App({ Component, pageProps }: AppProps) {
     ? router?.query?.query[0]
     : router?.query?.query || "";
     
-  const queryClient = new QueryClient();
+  // const queryClient = new QueryClient();
+  const [queryClient] = useState(
+    () => new QueryClient({
+      defaultOptions: {
+        queries: {
+          // With SSR, we usually want to set some default staleTime
+          // above 0 to avoid refetching immediately on the client
+          staleTime: 120 * 1000,
+        },
+      },
+    }),
+  )
 
   return (
     <QueryClientProvider client={queryClient}>
