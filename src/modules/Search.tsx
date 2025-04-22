@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter  } from "next/router";
 import { CloudAlert, Frown } from "lucide-react";
 import { MoviesProps } from "@/src/commons/types";
@@ -18,7 +18,15 @@ const SearchView = () => {
   ? router.query.page[0] 
   : router.query?.page ?? 1;
 
-  const { data, isFetching, isPending, isError, error } = useSearchMovies(queryParam, Number(page), [queryParam, String(page)]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const {
+    data,
+    isFetching,
+    isPending,
+    isError,
+    error,
+  } = useSearchMovies(queryParam, Number(page));
 
   const goToPage = (page: number) => {
     router.push({
@@ -27,7 +35,18 @@ const SearchView = () => {
     });
   };
 
-  if (isPending || isFetching) {
+  useEffect(() => {
+    setLoading(true);
+    let timeout: NodeJS.Timeout;
+  
+    if (data?.results) {
+      timeout = setTimeout(() => setLoading(false), 500);
+    }
+  
+    return () => clearTimeout(timeout);
+  }, [data, page]);
+
+  if (loading || isPending || isFetching) {
     return (
       <div className="w-full max-w-container px-4 mx-auto">
         <h1 className="text-xl md:text-4xl font-bold mb-1">

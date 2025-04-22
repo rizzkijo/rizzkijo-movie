@@ -1,5 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchPopular, fetchTopRated, fetchNowPlaying } from "../requests/movieRequests";
+import {
+  fetchPopular,
+  fetchTopRated,
+  fetchNowPlaying,
+  fetchSearchMovies,
+  fetchDetailMovie,
+} from "../requests/movieRequests";
 
 const usePopularMovies = (page:number = 1, slice: number = 0) => {
   return useQuery({
@@ -8,48 +14,31 @@ const usePopularMovies = (page:number = 1, slice: number = 0) => {
   });
 };
 
-const useNowPlayingMovies = (page = 1, slice: number = 0) => {
+const useNowPlayingMovies = (page:number  = 1, slice: number = 0) => {
   return useQuery({
     queryKey: ['nowplaying', page, slice],
     queryFn: () => fetchNowPlaying(page, slice),
   });
 };
 
-const useTopRatedMovies = (page = 1, slice: number = 0) => {
+const useTopRatedMovies = (page:number  = 1, slice: number = 0) => {
   return useQuery({
     queryKey: ['toprated', page, slice],
     queryFn: () => fetchTopRated(page, slice),
   });
 };
 
-const useSearchMovies = (
-  query: string,
-  page: number | string = 1,
-  queryKey: string[],
-) => {
+const useSearchMovies = (query: string, page:number = 1) => {
   return useQuery({
-    queryKey,
-    queryFn: async () => {
-      const res = await fetch(`/api/searchMovies?query=${query}&include_adult=false&page=${page}`);
-      return res.json();
-    },
-    select: (data) => ({
-      ...data,
-      results: data.results,
-    }),
+    queryKey: ['search', page],
+    queryFn: () => fetchSearchMovies(query, page),
   });
 };
 
-const useMovieDetail = (
-  queryKey: string[],
-  id: string,
-) => {
+const useMovieDetail = (id: string) => {
   return useQuery({
-    queryKey,
-    queryFn: async () => {
-      const res = await fetch(`/api/detailMovie/${id}`);
-      return res.json();
-    },
+    queryKey: ['detail', id],
+    queryFn: () => fetchDetailMovie(id),
   });
 };
 
