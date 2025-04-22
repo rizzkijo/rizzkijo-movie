@@ -89,26 +89,6 @@ const Pagination = ({ currentPage, totalPages, delta = 2, onPageChange }: Pagina
       >
         <ChevronRight size={18} aria-hidden="true" />
       </button>
-
-      {/* <Form
-        action="#"
-        onSubmit={handleSubmitPage}
-      >
-        <label htmlFor="page" className="sr-only">
-          Go to page
-        </label>
-        <input
-          name="page"
-          type="number"
-          value={inputValue}
-          onChange={(e) => setInputValue(Number(e.target.value))}
-          className={`
-            transition-all w-[50px] h-[40px] px-2 box-border border-1 border-neutral-600 no-spinner
-            focus:border-1 focus:border-neutral-500 focus:outline-none text-center rounded-md
-            focus-visible:border-1 focus-visible:border-neutral-500 focus-visible:outline-none
-          `}
-        />
-      </Form> */}
     </div>
   );
 };

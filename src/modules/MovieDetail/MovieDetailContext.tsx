@@ -40,7 +40,9 @@ export const useDetailInfo = () => {
 };
 
 export const MovieDetailProvider = ({ id, children }: { id: string; children: React.ReactNode }) => {
-  const { data, isFetching, isPending, isError, error } = useMovieDetail([id], id);
+  const { data, isFetching, isPending, isError, error } = useMovieDetail(id);
+  // console.log('jotest id', id);
+  // console.log('jotest data', data);
 
   const topBannerData: TopBannerMovieProps | undefined = data
     ? {
