@@ -57,10 +57,10 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
         }}>
           <Image
             // className="dark:invert"
-            src="/assets/images/rizzkijo.svg"
+            src="/assets/images/logo.svg"
             alt="Next.js logo"
-            width={100}
-            height={47}
+            width={70}
+            height={40}
             priority
           />
         </Link>
@@ -127,7 +127,7 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
               { href: "/movie/nowplaying", label: "Now Playing" },
               { href: "/movie/toprated", label: "Top Rated" },
             ].map(({ href, label }) => (
-              <li key={href} className="w-full md:w-auto">
+              <li key={href} className="text-base w-full md:w-auto">
                 <Link
                   href={href}
                   onClick={() => isMobile && setShowMenu(false)}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MoviesProps, TopBannerMovieProps } from "@/src/commons/types";
 import MovieCard from "@/src/commons/MovieCard";
 import { usePopularMovies, useTopRatedMovies, useNowPlayingMovies } from "@/src/hooks/movieHooks";
@@ -8,9 +8,9 @@ import MainBanner from "./components/MainBanner";
 import MainBannerSkeleton from "./components/MainBannerSkeleton";
 
 const Home = () => {
-  const [loadingPop, setLoadingPop] = useState<boolean>(true);
-  const [loadingTop, setLoadingTop] = useState<boolean>(true);
-  const [loadingNow, setLoadingNow] = useState<boolean>(true);
+  // const [loadingPop, setLoadingPop] = useState<boolean>(true);
+  // const [loadingTop, setLoadingTop] = useState<boolean>(true);
+  // const [loadingNow, setLoadingNow] = useState<boolean>(true);
 
   // Get Popular Movies list, slice 5
   const {
@@ -39,35 +39,35 @@ const Home = () => {
     error: errorNow,
   } = useNowPlayingMovies(1, 8);
 
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
+  // useEffect(() => {
+  //   let timeout: NodeJS.Timeout;
   
-    if (dataPop?.results) {
-      timeout = setTimeout(() => setLoadingPop(false), 500);
-    }
+  //   if (dataPop?.results) {
+  //     timeout = setTimeout(() => setLoadingPop(false), 500);
+  //   }
   
-    return () => clearTimeout(timeout);
-  }, [dataPop]);
+  //   return () => clearTimeout(timeout);
+  // }, [dataPop]);
 
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
+  // useEffect(() => {
+  //   let timeout: NodeJS.Timeout;
   
-    if (dataTop?.results) {
-      timeout = setTimeout(() => setLoadingTop(false), 500);
-    }
+  //   if (dataTop?.results) {
+  //     timeout = setTimeout(() => setLoadingTop(false), 500);
+  //   }
   
-    return () => clearTimeout(timeout);
-  }, [dataTop]);
+  //   return () => clearTimeout(timeout);
+  // }, [dataTop]);
 
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
+  // useEffect(() => {
+  //   let timeout: NodeJS.Timeout;
   
-    if (dataNow?.results) {
-      timeout = setTimeout(() => setLoadingNow(false), 500);
-    }
+  //   if (dataNow?.results) {
+  //     timeout = setTimeout(() => setLoadingNow(false), 500);
+  //   }
   
-    return () => clearTimeout(timeout);
-  }, [dataNow]);
+  //   return () => clearTimeout(timeout);
+  // }, [dataNow]);
 
   return (
     <div className="flex flex-col gap-6 md:gap-10 items-start w-full max-w-container px-4 mx-auto">
@@ -81,7 +81,7 @@ const Home = () => {
         gap={0}
         infinite
         isError={isErrorPop || dataPop?.results?.success === false}
-        loading={loadingPop || isFetchingPop || isPendingPop}
+        loading={isFetchingPop || isPendingPop}
         errorMessage={errorPop?.message || dataPop?.results?.status_message}
         renderItem={({ item }) => (
           <MainBanner data={item} />
@@ -95,7 +95,7 @@ const Home = () => {
         title="Now Playing"
         gap={16}
         isError={isErrorNow || dataNow?.results?.success === false}
-        loading={loadingNow || isFetchingNow || isPendingNow}
+        loading={isFetchingNow || isPendingNow}
         errorMessage={errorNow?.message || dataNow?.results?.status_message}
         viewAllLink="/movie/nowplaying"
         renderItem={({ item }) => <MovieCard data={item} />}
@@ -108,7 +108,7 @@ const Home = () => {
         title="Top Rated"
         gap={16}
         isError={isErrorTop || dataTop?.results?.success === false}
-        loading={loadingTop || isFetchingTop || isPendingTop}
+        loading={isFetchingTop || isPendingTop}
         errorMessage={errorTop?.message || dataTop?.results?.status_message}
         viewAllLink="/movie/toprated"
         autoPlay

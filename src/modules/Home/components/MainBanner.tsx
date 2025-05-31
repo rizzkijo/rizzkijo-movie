@@ -51,11 +51,11 @@ const MainBanner = ({ data }: MainBannerProps) => (
         )}
 
         <div className="flex flex-col text-white">
-          <h3 className="font-bold text-5xl text-white leading-[1.3]">
+          <h3 className="font-bold text-3xl lg:text-5xl text-white leading-[1.3]">
             {data?.original_title === data?.title ? data?.original_title : `${data?.original_title} - ${data?.title}`}
             {' '}
             {data?.release_date && (
-              <span className="text-3xl font-[500] text-white/90">
+              <span className="text-xl lg:text-3xl font-[500] text-white/90">
                 {`(${data?.release_date && new Date(data?.release_date).getFullYear()})`}
               </span>
             )}
