@@ -1,11 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import {
+  fetchTrendingMovie,
   fetchPopular,
   fetchTopRated,
   fetchNowPlaying,
   fetchSearchMovies,
   fetchDetailMovie,
 } from "../requests/movieRequests";
+
+const useTrendingMovies = (time: 'day' | 'week', slice: number = 0) => {
+  return useQuery({
+    queryKey: ['trending', time, slice],
+    queryFn: () => fetchTrendingMovie(time, slice),
+  });
+};
 
 const usePopularMovies = (page:number = 1, slice: number = 0) => {
   return useQuery({
@@ -43,6 +51,7 @@ const useMovieDetail = (id: string) => {
 };
 
 export {
+  useTrendingMovies,
   usePopularMovies,
   useNowPlayingMovies,
   useTopRatedMovies,

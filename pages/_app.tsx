@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Header from "@/src/commons/Header";
 import Footer from "@/src/commons/Footer";
 import { useState } from "react";
+import { cn } from "@/src/lib/utils";
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
@@ -16,6 +17,7 @@ const poppins = Poppins({
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  const isHome = router.pathname === "/";
   const searchValue = Array.isArray(router?.query?.query)
     ? router?.query?.query[0]
     : router?.query?.query || "";
@@ -35,7 +37,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <main className={`${poppins.className} flex flex-col pt-[84px] min-h-svh`}>
+      <main className={cn(
+        isHome ? "pt-0" : "pt-[84]",
+        `${poppins.className} flex flex-col min-h-svh`
+      )}>
         <Header searchValue={searchValue} />
         <div className="pb-[32px]">
           <Component {...pageProps} />

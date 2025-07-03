@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import Form from "next/form";
 import { SearchComponentProps } from "@/src/commons/types";
 import { Info, Search } from "lucide-react";
+import { cn } from "@/src/lib/utils";
 
 const SearchComponent = ({
   className = '',
@@ -51,18 +52,16 @@ const SearchComponent = ({
             placeholder={placeholder}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            className={`
-              transition-all
-              w-full py-2 px-4 pr-[44px] box-border border-1 border-neutral-400
-              focus:border-neutral-700 focus:outline-none
-              focus-visible:border-neutral-700 focus-visible:outline-none
-            bg-white rounded-md ${className}
-            `}
+            className={cn(
+              "transition-all w-full py-2 px-4 pr-[44px] box-border border-1 border-foreground rounded-full",
+              "focus:border-3 focus:outline-none focus-visible:outline-none",
+              className,
+            )}
           />
 
           <button
             type="submit"
-            className="cursor-pointer absolute right-3 -translate-y-2/4 top-2/4 text-neutral-500"
+            className="cursor-pointer absolute right-3 -translate-y-2/4 top-2/4 rounded-full"
             title={placeholder}
           >
             <Search size={24} />
@@ -72,7 +71,7 @@ const SearchComponent = ({
           {searchWarning && (
             <div className={`search-tooltip absolute top-[calc(100%_+_10px)] left-0 ${searchWarning && 'active'}`}>
                 <div
-                  className="bg-black text-white text-sm flex gap-2
+                  className="bg-red-600 text-foreground text-sm flex gap-2
                   items-center py-2 px-4 rounded-md"
                 >
                   <Info size={18} />

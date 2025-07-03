@@ -13,7 +13,7 @@ const DetailInfo = () => {
 
   // render detail info kayak production company, revenue, dll
   return (
-    <div className="w-full max-w-container px-4 mt-4 mx-auto flex flex-col gap-4">
+    <div className="w-full container px-4 mt-4 mx-auto flex flex-col gap-4">
       <div className="flex flex-col gap-1 float-left">
         <p className="text-xs lg:text-sm font-medium">Overview</p>
         <p className="text-neutral-600">{detail?.overview || notAvailable()}</p>

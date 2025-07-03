@@ -5,6 +5,7 @@ import { Menu, Search, SearchX, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useMobile, useTablet } from "@/src/commons/utils";
 import { usePathname } from "next/navigation";
+import { cn } from "@/src/lib/utils";
 
 type HeaderProps = {
   searchValue?: string;
@@ -25,6 +26,9 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [hasMounted, setHasMounted] = useState<boolean>(false);
 
+  // Scroll state
+  const [scrolled, setScrolled] = useState(false);
+
   // Set hasMounted to true after mounted
   useEffect(() => {
     setHasMounted(true);
@@ -40,14 +44,33 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
     setShowMenu(!isTablet);
   }, [isTablet, hasMounted]);
 
+  // Add class (bg color) to header
+  // if user scrolled 100px or more
+  useEffect(() => {
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   // return null if not mounted yet to avoid hydration issue
   if (!hasMounted) return null;
 
   return (
-    <header className="fixed top-0 bg-white w-full shadow-lg z-[1001]">
+    <header className={cn(
+      "fixed top-0 text-foreground w-full z-[1001]",
+      "transition-all duration-500",
+      scrolled ? "bg-background shadow-[0_0_8px_rgba(255,255,255,0.1)]" : "bg-transparent",
+    )}>
       <div
-        className="relative h-[60px] px-4 flex justify-between items-center gap-2
-        max-w-container ml-auto mr-auto"
+        className="relative h-[80px] px-4 md:px-0 flex justify-between items-center gap-2
+        container ml-auto mr-auto"
       >
         <Link href="/" onClick={() => {
           if (isMobile){
@@ -56,8 +79,7 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
           }
         }}>
           <Image
-            // className="dark:invert"
-            src="/assets/images/logo.svg"
+            src="/assets/images/logo-light.svg"
             alt="Next.js logo"
             width={70}
             height={40}
@@ -100,7 +122,7 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
 
         {showSearch && (
           <div
-            className="shadow-lg absolute top-[100%] right-0 left-0 bg-white py-3 px-4 w-full
+            className="shadow-lg absolute top-[100%] right-0 left-0 py-3 px-4 w-full
             md:-translate-y-2/4 md:-translate-x-2/4 md:top-2/4 md:left-2/4 md:max-w-[350px]
             md:gap-6 md:flex-row md:items-center md:shadow-none md:py-0 lg:max-w-[450px]"
           >
@@ -117,8 +139,8 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
         {showMenu && (
           <ul
             className="flex flex-col gap-1 items-start justify-start shadow-lg
-            absolute top-[100%] right-0 left-0 bg-white py-3
-            md:justify-center md:gap-6 md:flex-row
+            absolute top-[100%] right-0 left-0 py-3
+            md:justify-center md:gap-8 md:flex-row
             lg:items-center lg:shadow-none md:py-0
             xl:static xl:justify-start"
           >

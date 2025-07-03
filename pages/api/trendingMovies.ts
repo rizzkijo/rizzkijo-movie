@@ -1,13 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { query, page = 1 } = req.query;
-  
+  const { time } = req.query;
   const accessToken = process.env.NEXT_PUBLIC_TMDB_ACESS_TOKEN;
 
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=true&page=${page}`,
+      `https://api.themoviedb.org/3/trending/movie/${time}`,
       {
         method: 'GET',
         headers: {
