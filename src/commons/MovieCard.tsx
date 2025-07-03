@@ -15,18 +15,19 @@ const MovieCard = ({ priority = false, data }: MovieCardProps) => {
       href={`/movie/${data?.id}`}
       className="inline-block group relative
       transition-all duration-[0.25s] ease-[ease-in-out]
-      rounded-xl overflow-hidden"
+      rounded-xl overflow-hidden bg-card text-card-foreground"
     >
       <div
           className="flex items-center justify-end
-          absolute top-4 right-4 z-1"
+          absolute top-4 right-4 gap-1 z-1"
         >
+          {/* Show 18+ label if adult movie */}
           {data.adult && (
             <p
               className="w-[35px] h-[35px] flex items-center justify-center
               rounded-full bg-white font-bold text-sm text-red-500 drop-shadow-lg"
             >
-              18+
+              21+
             </p>
           )}
           <p
@@ -37,18 +38,7 @@ const MovieCard = ({ priority = false, data }: MovieCardProps) => {
           </p>
       </div>
 
-      {/* Show 18+ label if adult movie */}
-      {data.adult && (
-        <div
-          className="w-[50px] h-[50px] rounded-full bg-white
-          flex items-center justify-center
-          absolute top-4 left-4 drop-shadow-lg"
-        >
-          <p className="font-bold text-xl text-red-500">18+</p>
-        </div>
-      )}
-
-      <div className={`w-full aspect-[2_/_3] ${isImageSrcError ? 'bg-gray-400': 'bg-black/70'} flex justify-center items-center`}>
+      <div className={`w-full aspect-[2_/_3] flex justify-center items-center`}>
         
         {/* Show image place holder if image from api fails to load */}
         {isImageSrcError

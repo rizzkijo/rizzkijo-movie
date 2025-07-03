@@ -11,7 +11,7 @@ export default function Document() {
         <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
         <meta name="mobile-web-app-capable" content="yes" />
       </Head>
-      <body className="antialiased">
+      <body className="antialiased dark">
         <Main />
         <NextScript />
       </body>

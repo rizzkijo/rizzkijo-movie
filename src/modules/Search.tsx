@@ -48,7 +48,7 @@ const SearchView = () => {
 
   if (loading || isPending || isFetching) {
     return (
-      <div className="w-full max-w-container px-4 mx-auto">
+      <div className="w-full container px-4 mx-auto">
         <h1 className="text-xl md:text-4xl font-bold mb-1">
           {`Search result(s) for "${queryParam}"`}
         </h1>
@@ -64,7 +64,7 @@ const SearchView = () => {
 
   if (isError || data?.success === false) {
     return (
-      <div className="w-full max-w-container px-4 pt-20 mx-auto text-center">
+      <div className="w-full container px-4 pt-20 mx-auto text-center">
         <h1 className="text-xl lg:text-2xl xl:text-4xl font-bold mb-2 lg:mb-4 xl:mb-6 flex flex-col items-center gap-4">
           <span className="text-red-600"><CloudAlert size={60} /></span>
           Oops!! Something went wrong!
@@ -76,7 +76,7 @@ const SearchView = () => {
 
   return (
     <>
-      <div className="flex flex-col items-start w-full max-w-container px-4 mx-auto">
+      <div className="flex flex-col items-start w-full container px-4 mx-auto">
         <h1 className="text-xl md:text-4xl font-bold mb-1">
           {`Search result(s) for "${queryParam}"`}
         </h1>

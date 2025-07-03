@@ -35,6 +35,8 @@ const MainBanner = ({ data }: MainBannerProps) => (
             : '/assets/images/backdrop-placeholder.jpg'}
           alt={data?.title}
           className="absolute object-cover object-top opacity-40 w-full h-full z-1"
+          width="1200"
+          height="400"
         />
       </picture>
       <div

@@ -69,6 +69,7 @@ export type TopBannerMovieProps = {
   genres: GenresProps[];
   original_title?: string;
   original_language?: string;
+  overview: string;
   poster_path: string;
   release_date?: string;
   runtime: number;
@@ -131,4 +132,9 @@ export type CustomCarouselProps<T> = {
   tabletRows?: number;
   title?: string;
   viewAllLink?: string;
+}
+
+export type BigPosterProps = {
+  data: TopBannerMovieProps[];
+  transitionDuration: number;
 }

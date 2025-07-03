@@ -12,7 +12,7 @@ const Banner = () => {
 
   return (
     <div
-      className="relative w-full max-w-container md:px-4 -mt-[24px] md:mt-0 mx-auto"
+      className="relative w-full container md:px-4 -mt-[24px] md:mt-0 mx-auto"
     >
       <div
         className="relative flex flex-col sm:items-start w-full bg-cover bg-black aspect-square

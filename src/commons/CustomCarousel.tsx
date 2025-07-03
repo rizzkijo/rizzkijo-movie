@@ -52,15 +52,17 @@ const CustomCarousel = <T,>({
       {loading && (
         skeleton ? (
           <>
-            <div className="flex items-baseline justify-between gap-4 mb-2 md:mb-4">
-              {title && <h1 className="text-2xl font-bold md:text-3xl">{title}</h1>}
-              {viewAllLink && (
-                <Link href={viewAllLink} className="flex items-center gap-2">
-                  <span>View All</span>
-                  <ChevronRight size={18} />
-                </Link>
-              )}
-            </div>
+            {title && (
+              <div className="flex items-baseline justify-between gap-4 mb-2 md:mb-4">
+                <h1 className="text-2xl font-bold md:text-3xl">{title}</h1>
+                {viewAllLink && (
+                  <Link href={viewAllLink} className="flex items-center gap-2">
+                    <span>View All</span>
+                    <ChevronRight size={18} />
+                  </Link>
+                )}
+              </div>
+            )}
             <div style={{ marginInline: `calc(${gap}px / -2)` }}>
               <Carousel
                 additionalTransfrom={0}
@@ -104,8 +106,9 @@ const CustomCarousel = <T,>({
 
       {!loading && data?.length && (
         <>
+        {title && (
           <div className="flex items-baseline justify-between gap-4 mb-2 md:mb-4">
-            {title && <h1 className="text-2xl font-bold md:text-3xl">{title}</h1>}
+            <h1 className="text-2xl font-bold md:text-3xl">{title}</h1>
             {viewAllLink && (
               <Link href={viewAllLink} className="flex items-center gap-2">
                 <span>View All</span>
@@ -113,6 +116,7 @@ const CustomCarousel = <T,>({
               </Link>
             )}
           </div>
+        )}
           <div style={{ marginInline: `calc(${gap}px / -2)` }}>
             <Carousel
               additionalTransfrom={0}
