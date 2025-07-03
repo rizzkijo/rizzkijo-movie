@@ -48,6 +48,7 @@ export const MovieDetailProvider = ({ id, children }: { id: string; children: Re
         genres: data.genres,
         original_title: data.original_title,
         original_language: data.original_language,
+        overview: data.overview,
         poster_path: data.poster_path,
         release_date: data.release_date,
         runtime: data.runtime,
