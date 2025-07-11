@@ -1,6 +1,6 @@
 import { Clapperboard, Star, Timer } from 'lucide-react';
-import { TMDBImageBaseUrl, lgTMDBImageBaseUrl, mdTMDBImageBaseUrl } from '@/src/commons/utils';
-import { MainBannerProps } from '@/src/commons/types';
+import { TMDBImageBaseUrl, lgTMDBImageBaseUrl, mdTMDBImageBaseUrl } from '@/lib/utils';
+import { type MainBannerProps } from '@/src/types';
 
 const MainBanner = ({ data }: MainBannerProps) => (
   <div

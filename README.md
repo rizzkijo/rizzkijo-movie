@@ -1,65 +1,40 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
-## General Information
+## Getting Started
 
-Frontend demo: [https://hometest-virtualspirit.vercel.app/](https://hometest-virtualspirit.vercel.app/)
+First, run the development server:
 
-Latest branch: `master`
-
-## Requirements
-- NodeJS v18 or above
-- Yarn / NPM
-- TMDB Public API: [https://developer.themoviedb.org/docs/getting-started](https://developer.themoviedb.org/docs/getting-started)
-
-## Configurations
-Setup environment variables in `.env`. See `.env.example`.
-
-## Installation
-1. Install dependencies: `yarn install` or `npm install`
-2. Dev mode: `yarn dev` or `npm run dev`
-3. Prod mode: `yarn build` or `npm run build` then `yarn start` or `npm start`
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-# Movie App - Additional Features
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-This project is part of a coding challenge that requires adding at least one feature to enhance the user experience. Below are the additional features implemented:
+[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-## 1. Movie Detail Page
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
 
-### Description
-A **Movie Detail Page** was added to provide users with detailed information about a selected movie, including its title, description, release date, rating, and poster. This improves the user experience by allowing users to explore more details about a movie.
+This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### How to Use
-- Click on a movie from the **search results** or **home page** or **category page** (Now Playing & Top Rated).
-- The app will navigate to the **Movie Detail Page**, displaying detailed information about the selected movie.
+## Learn More
 
-### Implementation Details
-- Fetched movie details from **TMDB API** using `React Query`.
-- Displayed key movie information such as **title, overview, release date, rating, and poster**.
-- Used **Next.js dynamic routing (`pages/movie/[id].tsx`)** to handle individual movie pages.
+To learn more about Next.js, take a look at the following resources:
 
-### Testing
-- Manually tested to ensure data is correctly fetched and displayed.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
 
----
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## 2. Search Pagination
+## Deploy on Vercel
 
-### Description
-A simple **pagination feature** but usefull was added to the search results page, allowing users to navigate through multiple pages of search results. This improves usability when searching for movies.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-### How to Use
-- When searching for a movie (min. 3 characters), results are displayed in **pages**.
-- Users can click "Next" or "Previous" buttons to navigate between result pages, users can also go directly to a specific page number by changing the destination page number in the input provided.
-
-### Implementation Details
-- Utilized **TMDB API’s pagination feature** using the `page` query parameter.
-- Added "Next" and "Previous" buttons to update the current page.
--	Added page number input that displays the current page, and can be changed to a specific destination page number.
-- The current page is managed using **React state (`useState`)** and updated dynamically.
-
-### Testing
-- Manually tested to ensure pagination works correctly when navigating between pages.
-
----
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.

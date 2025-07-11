@@ -1,8 +1,8 @@
 // import { useMovieDetailContext } from '../MovieDetailContext';
 import { useTopBanner } from '../MovieDetailContext';
 import { Clapperboard, Star, Timer } from 'lucide-react';
-import { TMDBImageBaseUrl, lgTMDBImageBaseUrl, mdTMDBImageBaseUrl } from '@/src/commons/utils';
-import { useMobile } from '@/src/commons/utils';
+import { TMDBImageBaseUrl, lgTMDBImageBaseUrl, mdTMDBImageBaseUrl } from '@/lib/utils';
+import { useMobile } from '@/lib/utils';
 
 const Banner = () => {
   const banner = useTopBanner();
