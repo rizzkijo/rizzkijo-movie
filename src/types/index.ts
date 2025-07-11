@@ -13,6 +13,9 @@ export type MoviesProps = {
 export type MovieCardProps = {
   priority?: boolean;
   data: MoviesProps;
+  showDetails?: boolean;
+  indexNo?: undefined | number;
+  boxShadow?: boolean;
 }
 
 export type GenresProps = {

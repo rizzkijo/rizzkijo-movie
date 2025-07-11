@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { cn } from "@/src/lib/utils";
-import Image from "next/image";
+import { cn } from "@/lib/utils";
+import ResponsiveImage from "@/src/components/ResponsiveImage";
 import {
   TMDBImageBaseUrl,
-  // lgTMDBImageBaseUrl,
-  // mdTMDBImageBaseUrl,
-} from '@/src/commons/utils';
-import type { BigPosterProps } from "@/src/commons/types";
+  lgTMDBImageBaseUrl,
+  mdTMDBImageBaseUrl,
+} from '@/lib/utils';
+import { type BigPosterProps } from "@/src/types";
 
 const HeroPoster = ({ data, transitionDuration }: BigPosterProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -18,14 +18,14 @@ const HeroPoster = ({ data, transitionDuration }: BigPosterProps) => {
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % data?.length);
         setFade(true);
-      }, 150);
+      }, 50);
     }, transitionDuration);
 
     return () => clearInterval(interval);
   }, [data, transitionDuration]);
 
   return (
-    <div className="relative w-full overflow-hidden aspect-[11/16] md:aspect-[16/7]">
+    <div className="relative w-full overflow-hidden aspect-[11/15] md:aspect-[10/6] lg:aspect[16/9] xl:aspect-[16/7]">
       {data?.map((item, index) => (
         <div
           key={index}
@@ -37,28 +37,27 @@ const HeroPoster = ({ data, transitionDuration }: BigPosterProps) => {
             }
           )}
         >
-          <Image
-            src={item?.backdrop_path
-              ? `${TMDBImageBaseUrl}${item?.backdrop_path}`
-              : '/assets/images/backdrop-placeholder.jpg'}
+          <ResponsiveImage
+            srcMobile={`${mdTMDBImageBaseUrl}${item.poster_path}`}
+            srcTablet={`${lgTMDBImageBaseUrl}${item.backdrop_path}`}
+            srcDesktop={`${TMDBImageBaseUrl}${item.backdrop_path}`}
+            fallbackSrc="/assets/images/backdrop-placeholder.jpg"
             alt={item.title}
-            width={1920}
-            height={640}
-            priority={index === 0 ? true : false}
-            className="absolute top-0 left-0 w-full h-full object-cover z-0"
+            index={index}
+            className="opacity-85 absolute object-cover object-top w-full h-full z-1"
           />
 
           <section className={cn(
-            "absolute top-0 left-0 w-full h-full z-1 flex items-center py-[40px]",
-            "bg-gradient-to-b from-background/90 to-background via-background/30"
+            "absolute top-0 left-0 w-full h-full z-1 flex items-end pt-[80px] pb-[100px] md:pb-[180px]",
+            "bg-gradient-to-b from-background/40 to-background via-transparent"
           )}>
             <div className="container mx-auto">
-              <div className="w-[700px] max-w-full">
-                <h2 className="font-bold text-2xl md:text-7xl">
+              <div className="w-full md:w-[50%] lg:w-[60%]">
+                <h2 className="font-bold text-2xl md:text-5xl lg:text-7xl">
                   {item?.original_title === item?.title
                     ? item?.original_title : `${item?.original_title} - ${item?.title}`}
                 </h2>
-                {item.overview && <p className="mt-4 text-lg md:text-xl">{item.overview}</p>}
+                {item.overview && <p className="mt-4 text-base md:text-lg line-clamp-2">{item.overview}</p>}
               </div>
             </div>
           </section>

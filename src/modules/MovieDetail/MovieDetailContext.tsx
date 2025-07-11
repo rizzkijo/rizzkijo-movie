@@ -4,8 +4,8 @@ import {
   // useContext, --> just use 'use' hook start from React 19, like below
   use,
 } from 'react';
-import { DetailMovieProps, TopBannerMovieProps, DetailInfoMovieProps } from '@/src/commons/types';
-import { useMovieDetail } from '@/src/hooks/movieHooks';
+import { DetailMovieProps, TopBannerMovieProps, DetailInfoMovieProps } from '@/src/types';
+import { useDetailMovie } from '@/src/hooks/useDetailMovie';
 
 type MovieDetailContextType = {
   data: DetailMovieProps | null;
@@ -40,7 +40,7 @@ export const useDetailInfo = () => {
 };
 
 export const MovieDetailProvider = ({ id, children }: { id: string; children: React.ReactNode }) => {
-  const { data, isFetching, isPending, isError, error } = useMovieDetail(id);
+  const { data, isFetching, isPending, isError, error } = useDetailMovie(id);
 
   const topBannerData: TopBannerMovieProps | undefined = data
     ? {

@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { QueryClient, HydrationBoundary, dehydrate } from '@tanstack/react-query';
-import { fetchDetailMovie } from '@/src/requests/movieRequests';
-import MovieDetail from "@/src/modules/MovieDetail";
+import { fetchDetailMovie } from '@/src/requests/detail';
+import MovieDetailPage from '@/src/modules/MovieDetail';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const queryClient = new QueryClient();
@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 const DetailMoviePage = ({ dehydratedState }: { dehydratedState: unknown }) => (
   <HydrationBoundary state={dehydratedState}>
-    <MovieDetail />
+    <MovieDetailPage />
   </HydrationBoundary>
 );
 
