@@ -43,7 +43,7 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(96.416% 0.00011 271.152);
   --foreground: oklch(0.13 0.028 261.692);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.13 0.028 261.692);
@@ -76,10 +76,11 @@
   --sidebar-ring: oklch(0.707 0.022 261.325);
 }
 
+
 .dark {
   --background: oklch(0.1776 0 0);
   --foreground: oklch(0.985 0.002 247.839);
-  --card: oklch(0.3211 0 0);
+  --card: oklch(0.25 0 0);
   --card-foreground: oklch(0.985 0.002 247.839);
   --popover: oklch(0.3211 0 0);
   --popover-foreground: oklch(0.985 0.002 247.839);
@@ -110,38 +111,19 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
-@layer utilities {
-  .no-spinner::-webkit-outer-spin-button,
-  .no-spinner::-webkit-inner-spin-button {
-    appearance: none;
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  .no-spinner {
-    appearance: textfield;
-    -moz-appearance: textfield;
-  }
-}
-
 body {
   background: var(--background);
+  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-body {
-  @apply bg-background text-foreground;
-}
-
-.pagination-nav {
-  @apply w-[40px] h-[40px] bg-black text-white
-  rounded-md flex items-center justify-center cursor-pointer
-  hover:bg-black/80 disabled:cursor-default disabled:hover:bg-neutral-200
-  disabled:bg-neutral-200 disabled:text-black/30;
+.container {
+  @apply !px-4;
 }
 
 .menu-item {
   @apply text-foreground/85 hover:text-foreground transition-all
-  ease-[ease-in-out] py-2 px-4 lg:px-0 inline-block w-full
+  ease-[ease-in-out] py-2 px-4 lg:px-0 flex items-center gap-1 w-full
   hover:bg-gray-100 md:hover:bg-transparent md:w-auto;
 }
 
@@ -162,6 +144,32 @@ body {
 .search-tooltip:before {
   @apply content-[''] border-y-[9px] border-x-[8px] border-t-transparent border-x-transparent border-b-red-600
   absolute bottom-[100%] left-4;
+}
+
+.react-multi-carousel-dot.react-multi-carousel-dot--active button {
+  @apply !bg-primary !border-primary;
+}
+
+.react-multi-carousel-dot button {
+  @apply !border-foreground/30;
+}
+
+.font-monoton {
+  @apply leading-normal;
+  font-family: var(--font-monoton);
+}
+
+button {
+  @apply cursor-pointer;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 @keyframes fadeInSlide {

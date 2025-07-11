@@ -1,28 +1,10 @@
-// import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { PaginationProps } from "@/src/commons/types";
-import { useMobile } from "./utils";
-// import Form from "next/form";
+import { type PaginationProps } from "../types";
+import { useMobile } from "@/lib/utils";
 
 const Pagination = ({ currentPage, totalPages, delta = 2, onPageChange }: PaginationProps) => {
   const isMobile = useMobile();
   const deltaValue = isMobile ? 0 : delta;
-  // const [inputValue, setInputValue] = useState<number>(currentPage);
-
-  // useEffect(() => {
-  //   setInputValue(currentPage);
-  // }, [currentPage]);
-
-  // const handleSubmitPage = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   if (inputValue < 1 || inputValue > totalPages) {
-  //     if (inputValue !== currentPage) {
-  //       setInputValue(currentPage);
-  //     }
-  //   } else {
-  //     onPageChange(inputValue);
-  //   }
-  // };
 
   const getPageNumbers = () => {
     const pages: (number | string)[] = [];
@@ -50,7 +32,7 @@ const Pagination = ({ currentPage, totalPages, delta = 2, onPageChange }: Pagina
       aria-label="Pagination"
     >
       <button
-        className="pagination-nav"
+        className="pagination-nav px-3 py-1 rounded-md transition-colors cursor-pointer h-[40px] min-w-[40px] disabled:cursor-default"
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
         aria-label="Previous page"
@@ -60,7 +42,7 @@ const Pagination = ({ currentPage, totalPages, delta = 2, onPageChange }: Pagina
 
       {getPageNumbers().map((page, idx) =>
         page === "..." ? (
-          <span key={`ellipsis-${idx}`} className="px-2 text-neutral-500 select-none">
+          <span key={`ellipsis-${idx}`} className="px-2 text-foreground/70 select-none">
             ...
           </span>
         ) : (
@@ -70,8 +52,8 @@ const Pagination = ({ currentPage, totalPages, delta = 2, onPageChange }: Pagina
             className={`px-3 py-1 rounded-md transition-colors cursor-pointer h-[40px] min-w-[40px]
               disabled:cursor-default ${
               page === currentPage
-                ? "bg-neutral-200 text-black/80 font-bold"
-                : "hover:bg-neutral-100 text-neutral-700"
+                ? "bg-primary text-background font-bold"
+                : "text-foreground/70 hover:bg-primary hover:text-background"
             }`}
             aria-current={page === currentPage ? "page" : undefined}
             disabled={page === currentPage}
@@ -82,7 +64,7 @@ const Pagination = ({ currentPage, totalPages, delta = 2, onPageChange }: Pagina
       )}
 
       <button
-        className="pagination-nav"
+        className="pagination-nav px-3 py-1 rounded-md transition-colors cursor-pointer h-[40px] min-w-[40px] disabled:cursor-default"
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
         aria-label="Next page"

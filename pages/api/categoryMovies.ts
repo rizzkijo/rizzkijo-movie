@@ -1,12 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+const CATEGORY_ENDPOINTS: Record<string, string> = {
+  now_playing: 'now_playing',
+  popular: 'popular',
+  top_rated: 'top_rated',
+  upcoming: 'upcoming',
+};
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { page = 1 } = req.query;
+  const { category, page = 1 } = req.query;
   const accessToken = process.env.NEXT_PUBLIC_TMDB_ACESS_TOKEN;
+
+  if (!category || typeof category !== 'string' || !CATEGORY_ENDPOINTS[category]) {
+    return res.status(400).json({ message: 'Invalid or missing category' });
+  }
 
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?page=${page}`,
+      `https://api.themoviedb.org/3/movie/${CATEGORY_ENDPOINTS[category]}?page=${page}`,
       {
         method: 'GET',
         headers: {
@@ -25,6 +36,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   } catch (err) {
     res.status(500).json({ message: 'Something went wrong', error: err });
   }
-}
+};
 
-export default handler;
+export default handler; 

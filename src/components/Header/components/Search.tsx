@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import Form from "next/form";
-import { SearchComponentProps } from "@/src/commons/types";
+import { SearchComponentProps } from "@/src/types";
 import { Info, Search } from "lucide-react";
-import { cn } from "@/src/lib/utils";
+import { cn } from "@/lib/utils";
 
 const SearchComponent = ({
   className = '',
@@ -53,16 +53,17 @@ const SearchComponent = ({
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             className={cn(
-              "transition-all w-full py-2 px-4 pr-[44px] box-border border-1 border-foreground rounded-full",
-              "focus:border-3 focus:outline-none focus-visible:outline-none",
+              "transition-all w-full h-[50px] pl-5 pr-[64px] box-border border border-transparent rounded-full ring-1 ring-foreground",
+              "focus:border-foreground focus:outline-none focus-visible:outline-none placeholder:text-foreground/65",
               className,
             )}
           />
 
           <button
             type="submit"
-            className="cursor-pointer absolute right-3 -translate-y-2/4 top-2/4 rounded-full"
+            className="cursor-pointer absolute right-0 px-5 h-[50px] rounded-full text-center"
             title={placeholder}
+            aria-label="Search movie button"
           >
             <Search size={24} />
           </button>
