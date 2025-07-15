@@ -4,9 +4,15 @@ import { create } from 'zustand'
 //   darkMode: boolean
 // };
 
+type socialLinksProps = {
+  label: string
+  url: string
+}
+
 type AppStoreProps = {
   footerCopyText: string
   appName: string
+  socialLinks: socialLinksProps[]
 }
 
 // type ThemeAction = {
@@ -31,4 +37,14 @@ type AppStoreProps = {
 export const useAppStore = create<AppStoreProps>(() => ({
   appName: "Rizz Movie",
   footerCopyText: "2025 © Rizz Movie by rizzkijo.",
+  socialLinks: [
+    {
+      label: "Instagram",
+      url: "https://instagram.con/rizzkijo",
+    },
+    {
+      label: "Linkedin",
+      url: "https://linkedin.con/in/rizzkijo",
+    },
+  ],
 }));

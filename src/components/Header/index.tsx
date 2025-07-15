@@ -34,7 +34,6 @@ const Header = ({ searchValue = '' }: HeaderProps) => {
         { label: "Upcoming", href: "/movie/upcoming" },
       ],
     },
-    { label: "Contact", href: "/contact" },
   ];
 
   // Scroll state
