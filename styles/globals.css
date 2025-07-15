@@ -123,7 +123,8 @@ body {
 
 .menu-item {
   @apply text-foreground/85 hover:text-foreground transition-all
-  ease-[ease-in-out] py-2 px-4 lg:px-0 flex items-center gap-1 w-full
+  ease-[ease-in-out] py-2 px-4 lg:px-0 gap-1 w-full
+  flex items-center justify-between lg:justify-start
   hover:bg-gray-100 md:hover:bg-transparent md:w-auto;
 }
 
@@ -157,6 +158,11 @@ body {
 .font-monoton {
   @apply leading-normal;
   font-family: var(--font-monoton);
+}
+
+.font-rubik {
+  @apply leading-normal;
+  font-family: var(--font-rubik);
 }
 
 button {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { Poppins, Monoton } from "next/font/google";
+import { Poppins, Monoton, Rubik_Wet_Paint } from "next/font/google";
 import { QueryClient, QueryClientProvider, HydrationBoundary } from "@tanstack/react-query";
 
 import Header from "@/src/components/Header";
@@ -20,6 +20,14 @@ const poppins = Poppins({
 
 const monoton = Monoton({
   variable: "--font-monoton",
+  weight: ['400'],
+  style: ['normal'],
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const rubik = Rubik_Wet_Paint({
+  variable: "--font-rubik",
   weight: ['400'],
   style: ['normal'],
   subsets: ['latin'],
@@ -50,7 +58,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <HydrationBoundary state={pageProps.dehydratedState}>
         <main className={cn(
           isHome ? "pt-0" : "pt-[70px] md:pt-[104]",
-          `${poppins.className} ${monoton.variable} flex flex-col min-h-svh`
+          `${poppins.className} ${monoton.variable} ${rubik.variable} flex flex-col min-h-svh`
         )}>
           <Header searchValue={searchValue} />
           <Component {...pageProps} />
