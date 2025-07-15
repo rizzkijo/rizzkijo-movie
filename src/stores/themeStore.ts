@@ -40,11 +40,11 @@ export const useAppStore = create<AppStoreProps>(() => ({
   socialLinks: [
     {
       label: "Instagram",
-      url: "https://instagram.con/rizzkijo",
+      url: "https://instagram.com/rizzkijo",
     },
     {
       label: "Linkedin",
-      url: "https://linkedin.con/in/rizzkijo",
+      url: "https://linkedin.com/in/rizzkijo",
     },
   ],
 }));
