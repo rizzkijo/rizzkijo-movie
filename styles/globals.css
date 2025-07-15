@@ -160,6 +160,11 @@ body {
   font-family: var(--font-monoton);
 }
 
+.font-rubik {
+  @apply leading-normal;
+  font-family: var(--font-rubik);
+}
+
 button {
   @apply cursor-pointer;
 }
