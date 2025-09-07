@@ -52,8 +52,8 @@ const HeroPoster = ({ data, transitionDuration }: BigPosterProps) => {
             "bg-gradient-to-b from-background/40 to-background via-transparent"
           )}>
             <div className="container mx-auto">
-              <div className="w-full md:w-[50%] lg:w-[60%]">
-                <h2 className="font-bold text-2xl md:text-5xl lg:text-7xl">
+              <div className="w-full xl:w-[60%]">
+                <h2 className="font-bold text-2xl md:text-5xl xl:text-7xl line-clamp-2 leading-[1.3]">
                   {item?.original_title === item?.title
                     ? item?.original_title : `${item?.original_title} - ${item?.title}`}
                 </h2>
