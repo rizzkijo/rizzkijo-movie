@@ -44,7 +44,7 @@ const MovieDetail = () => {
 
           <meta property="og:title" content={`${data?.original_title || data?.title} (${new Date(data?.release_date || '0').getFullYear()}) | ${appName}`} />
           <meta property="og:description" content={data?.overview} />
-          <meta property="og:image" content={data?.poster_path ? `${imageBaseUrl}/data?.poster_path` : '/assets/images/backdrop-placeholder.jpg'} />
+          <meta property="og:image" content={data?.poster_path ? `${imageBaseUrl}/data?.poster_path` : `${process.env.NEXT_PUBLIC_BASE_URL}/assets/images/backdrop-placeholder.jpg`} />
           <meta property="og:type" content="website" />
         </Head>
       { (isFetching || isPending) ? <BannerSkeleton /> : <Banner /> }
