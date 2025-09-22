@@ -38,6 +38,8 @@ const MovieCard = ({ priority = false, data, showDetails = false, indexNo, boxSh
         href={`/${data?.id}_${slug}`}
         className="h-full block group transition-all duration-[0.25s] ease-[ease-in-out]"
         title={data?.title}
+        role="link"
+        aria-label={data.title}
       >
         <Card className={cn(
           "h-full p-0 group/movieCard relative overflow-hidden bg-card text-card-foreground rounded-2xl",
@@ -50,7 +52,7 @@ const MovieCard = ({ priority = false, data, showDetails = false, indexNo, boxSh
                 ? (
                   <Image
                     src={'/assets/images/backdrop-placeholder.jpg'}
-                    alt={`image-${data.id}`}
+                    alt={data.title}
                     width={270}
                     height={390}
                     className="w-full object-cover aspect-[2_/_3] scale-[1.05]
@@ -62,7 +64,7 @@ const MovieCard = ({ priority = false, data, showDetails = false, indexNo, boxSh
                 : (
                   <Image
                     src={`${imageBaseUrl}${data.poster_path}`}
-                    alt={`image-${data.id}`}
+                    alt={data.title}
                     width={270}
                     height={390}
                     className="w-full object-cover aspect-[2_/_3] scale-[1.05]
@@ -80,10 +82,13 @@ const MovieCard = ({ priority = false, data, showDetails = false, indexNo, boxSh
                   "flex flex-col items-start justify-end",
                 )}
               >
-                <h3 className={cn(
-                  "font-medium md:font-bold md:text-lg line-clamp-1",
-                  !data.release_date && !data.vote_average && !data.adult && "line-clamp-2",
-                )}>
+                <h3
+                  className={cn(
+                    "font-medium md:font-bold md:text-lg line-clamp-1",
+                    !data.release_date && !data.vote_average && !data.adult && "line-clamp-2",
+                  )}
+                  role="heading"
+                >
                   {data.original_title === data.title ? data.original_title : `${data.original_title} (${data.title})`}
                 </h3>
                 {(data.release_date || data.vote_average || data.adult) && (
