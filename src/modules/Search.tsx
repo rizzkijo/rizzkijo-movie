@@ -73,7 +73,7 @@ const SearchView = () => {
           <meta charSet="UTF-8" />
 
           <meta property="og:description" content="Temukan berbagai film terbaru, terpopuler, dan top rating dari seluruh dunia. Website ini menampilkan daftar film yang diambil langsung dari The Movie Database (TMDB) lengkap dengan poster, sinopsis, dan rating penonton." />
-          <meta property="og:image" content="/assets/images/logo.svg" />
+          <meta property="og:image" content={`${process.env.NEXT_PUBLIC_BASE_URL}/assets/images/icon-512.png`} />
           <meta property="og:type" content="website" />
         </Head>
         <div className="w-full container px-4 pt-20 mx-auto text-center">
@@ -95,7 +95,7 @@ const SearchView = () => {
         <meta charSet="UTF-8" />
 
         <meta property="og:description" content="Cari film favoritmu berdasarkan judul, genre, atau popularitas. Temukan informasi lengkap mulai dari poster, sinopsis, rating, hingga tahun rilis – semua diambil langsung dari The Movie Database (TMDB)." />
-        <meta property="og:image" content="/assets/images/logo.svg" />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_BASE_URL}/assets/images/icon-512.png`} />
         <meta property="og:type" content="website" />
       </Head>
       <div className="flex flex-col items-start w-full container px-4 mx-auto">

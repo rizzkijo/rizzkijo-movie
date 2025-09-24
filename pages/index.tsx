@@ -5,17 +5,9 @@ import Home from '@/src/modules/Home';
 import { fetchTrending } from '@/src/requests/trending';
 import { useAppStore } from '@/src/stores/themeStore';
 import { fetchCategoryMovies } from '@/src/requests/category';
-// import { fetchNowPlaying } from '@/src/requests/nowPlaying';
-// import { fetchTopRated } from '@/src/requests/topRated';
-// import { fetchPopular } from '@/src/requests/popular';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
-  
-  // const trendingQueryFn = () => fetchTrending("day", 10);
-  // const popularQueryFn = () => fetchPopular(1, 10);
-  // const topRatedQueryFn = () => fetchTopRated(1, 10);
-  // const nowPlayingQueryFn = () => fetchNowPlaying(1, 5);
 
   await queryClient.prefetchQuery({
     queryKey: ['nowplaying', 1, 5],
@@ -58,7 +50,7 @@ const Homepage = () => {
 
         <meta property="og:title" content={`Homepage | ${appName}`} />
         <meta property="og:description" content="Temukan berbagai film terbaru, terpopuler, dan top rating dari seluruh dunia. Website ini menampilkan daftar film yang diambil langsung dari The Movie Database (TMDB) lengkap dengan poster, sinopsis, dan rating penonton." />
-        <meta property="og:image" content="/assets/images/logo.svg" />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_BASE_URL}/assets/images/icon-512.png`} />
         <meta property="og:type" content="website" />
       </Head>
       <Home />
