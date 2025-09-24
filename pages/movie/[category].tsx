@@ -52,7 +52,7 @@ const CategoryMoviesPage = ({ category }: { dehydratedState: unknown; category: 
 
         <meta property="og:title" content={`${title} | ${appName}`} />
         <meta property="og:description" content="Jelajahi berbagai kategori film seperti aksi, komedi, horor, dan banyak lagi. Temukan film terbaik di setiap genre lengkap dengan poster, sinopsis, dan rating dari The Movie Database (TMDB)." />
-        <meta property="og:image" content="/assets/images/logo.svg" />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_BASE_URL}/assets/images/icon-512.png`} />
         <meta property="og:type" content="website" />
       </Head>
       <CategoryMovie title={title} category={category} />
