@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { query, page = 1 } = req.query;
   
-  const accessToken = process.env.NEXT_PUBLIC_TMDB_ACESS_TOKEN;
+  const accessToken = process.env.TMDB_ACCESS_TOKEN;
 
   try {
     const response = await fetch(

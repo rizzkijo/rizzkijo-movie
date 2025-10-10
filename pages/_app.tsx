@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 import type { AppProps } from "next/app";
 
-import "@/styles/globals.css";
+import "../styles/globals.css";
 import Footer from "@/src/components/Footer";
 
 const poppins = Poppins({
