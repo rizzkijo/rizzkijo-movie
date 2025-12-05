@@ -9,7 +9,7 @@ const CATEGORY_ENDPOINTS: Record<string, string> = {
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { category, page = 1 } = req.query;
-  const accessToken = process.env.NEXT_PUBLIC_TMDB_ACESS_TOKEN;
+  const accessToken = process.env.TMDB_ACCESS_TOKEN;
 
   if (!category || typeof category !== 'string' || !CATEGORY_ENDPOINTS[category]) {
     return res.status(400).json({ message: 'Invalid or missing category' });
